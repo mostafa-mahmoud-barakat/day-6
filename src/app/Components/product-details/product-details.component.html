@@ -1,0 +1,15 @@
+<div class="card" style="width:18rem;">
+    <img [src]="ptd?.image" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">{{ptd?.name}}</h5>
+        <p class="card-text">Quantity:{{ptd?.quantity}}</p>
+        <p class="card-text">Price:{{ptd?.price}}</p>
+    </div>
+    <div class="btn-group">
+        <button class="btn btn-danger" (click)=" prevbtn()" [disabled]="currentprouductID==arrayofreceivedIDonly[0]">Previous</button>
+        <button class="btn btn-primary" (click)=" goBack() ">Back</button>
+        <button class="btn btn-success" (click)=" nextbtn()" [disabled]="currentprouductID==arrayofreceivedIDonly[arrayofreceivedIDonly.length-1]">Next</button>
+
+    </div>
+
+</div>

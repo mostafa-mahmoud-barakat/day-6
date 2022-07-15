@@ -1,0 +1,127 @@
+<form [formGroup]="userformGroup"  class="m-2" (ngSubmit)="onSubmit()" >
+
+    <div class="mb-3">
+        <label for="usrName" class="form-label">Full Name</label>
+        <input type="text" class="form-control" [class.is-valid]="fullName?.valid&& fullName?.touched" [class.is-invalid]="fullName?.invalid&&fullName?.touched"   name="usrName" id="usrName" formControlName="fullName">
+        <div  [hidden]="fullName?.valid || fullName?.untouched">
+            <small class="text-danger" *ngIf="fullName?.errors?.['required']">
+            full name is required
+            </small>
+            <small class="text-danger" *ngIf="fullName?.errors?.['minlength']">
+                full name must be 5 characters at least
+            </small>
+        </div>
+    </div>
+
+    <div class="mb-3 ">
+        <label for="usrEmail" class="form-label">Email</label>
+        <input [class.is-valid]=" email?.valid&& email?.touched" [class.is-invalid]="email?.invalid&&email?.touched" type="email" class="form-control "   name="usrEmail"
+         
+          id="usrEmail" formControlName="email">
+        <div   [hidden]="email?.valid || email?.untouched">
+            <small class="text-danger" *ngIf="email?.errors?.['required']">
+            email is required
+            </small>
+            <small class="text-danger" *ngIf="email?.errors?.['pattern']">
+                email must be matched with pattern
+            </small>
+        </div>
+    </div>
+
+
+
+    <div formArrayName="mobileNo">
+        <div class="mb-3" *ngFor="let mob of mobileNo.controls;let i=index">
+            <label for="usrMobile{{i+1}}" class="form-label">Mobile No.{{i+1}}</label>
+            <input   type="number" class="form-control" name="usrMobile{{i+1}}" id="usrMobile{{i+1}}" [formControlName]="i">
+            
+            <!-- <button class="btn btn-success d-block ms-auto" (click)="deleteMobile()" *ngIf="mob.value&&i==mobileNo.controls.length-1">-</button> -->
+            <button class="btn btn-primary d-block ms-auto" (click)="addMobile()" *ngIf="mob.value&&i==mobileNo.controls.length-1">+</button>
+            <!-- <div class="alert alert-danger " [hidden]="mobileNo?.valid || mobileNo?.untouched" >
+                <small *ngIf="mobileNo?.errors?.['required']">
+                    mobile number is required
+                </small>
+                <small *ngIf="mobileNo?.errors?.['pattern']">
+                    mobile number must be matched with pattern
+                </small>
+            </div> -->
+        </div>
+        
+    </div>
+     
+
+    <div formGroupName="address">
+        Address:
+        <div class="mb-3 ms-2">
+            <label for="usrCity" class="form-label">city</label>
+            <input [class.is-valid]=" city?.valid&& city?.touched" [class.is-invalid]="city?.invalid&&city?.touched" type="text" class="form-control" name="usrCity" id="usrCity" formControlName="city">
+            <div   [hidden]="city?.valid || city?.untouched">
+                <small class="text-danger" *ngIf="city?.errors?.['required']">
+                    city is required
+                </small>
+            </div>
+        </div>
+        <div class="mb-3 ms-2">
+            <label for="usrpostalcode" class="form-label">postal code</label>
+            <input [class.is-valid]=" postalCode?.valid&& postalCode?.touched" [class.is-invalid]="postalCode?.invalid&&postalCode?.touched" type="text" class="form-control" name="usrpostalcode" id="postalcode" formControlName="postalCode">
+            <div   [hidden]="postalCode?.valid || postalCode?.untouched">
+                <small class="text-danger" *ngIf="postalCode?.errors?.['required']">
+                    postalCode is required
+                </small>
+            </div>
+        </div>
+        <div class="mb-3 ms-2">
+            <label for="usrStreet" class="form-label">Street</label>
+            <input  [class.is-valid]=" street?.valid&& street?.touched" [class.is-invalid]="street?.invalid&&street?.touched" type="text" class="form-control" name="usrStreet" id="usrStreet" formControlName="street">
+            <div   [hidden]="street?.valid || street?.untouched">
+                <small class="text-danger" *ngIf="street?.errors?.['required']">
+                    street is required
+                </small>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="mb-3">
+        <label for="usrPass" class="form-label">Password</label>
+        <input  [class.is-valid]=" password?.valid&& password?.touched" [class.is-invalid]="password?.invalid&&password?.touched" type="password" class="form-control" name="usrPass" id="usrPass" formControlName="password">
+        <div   [hidden]="password?.valid || password?.untouched">
+            <small class="text-danger" *ngIf="password?.errors?.['required']">
+                password is required
+            </small>
+            <small class="text-danger" *ngIf="password?.errors?.['minlength']">
+                password must be 6 characters at least
+            </small>
+        </div>
+    </div>
+
+    <!-- <div class="mb-3">
+        <label for="usrRePass" class="form-label">Retype Password</label>
+        <input type="password" class="form-control" name="usrRePass" id="usrRePass">
+    </div> -->
+
+    <!-- <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+        <input type="radio" class="btn-check" formControlName="referral" name="referral" id="btnradio1" autocomplete="off" value="SocialMedia">
+        <label class="btn btn-outline-primary" for="btnradio1">Social media</label>
+        <input type="radio" class="btn-check" formControlName="referral" name="referral" id="btnradio2" autocomplete="off" value="Friend">
+        <label class="btn btn-outline-primary" for="btnradio2">from a Friend</label>
+        <input type="radio" class="btn-check" formControlName="referral" name="referral" id="btnradio3" autocomplete="off" value="other">
+        <label class="btn btn-outline-primary" for="btnradio3">other</label>
+    </div> -->
+
+    <!-- <div class="mb-3">
+        <label for="">specify other: </label>
+        <input type="text" class="form-control" name="referralOther" id="referralOther" formControlName="referralOther">
+
+    </div> -->
+
+
+    <br>
+    <button type="submit" class="btn btn-success"    [disabled]="userformGroup.invalid">Submit</button>
+</form>
+
+<!-- <div class="bg-warning">
+    <h1>For test : {{userformGroup.value | json}}</h1>
+      <h1>For test : {{usrFormGroup.get('fullName')?.errors | json}}</h1> 
+
+  </div> -->

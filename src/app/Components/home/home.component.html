@@ -1,0 +1,29 @@
+<!-- interface -->
+<h1>interface Name:{{IProduct.name}}</h1>
+<img src="{{IProduct.image}}" alt="">
+
+<!-- strutue directive  -->
+<!-- loop on branches -->
+<!-- <ul>
+    <li *ngFor="let loc of storeInfo.Branches">
+        {{loc}}
+    </li>
+</ul> -->
+
+
+<!-- class -->
+<h1> class name:{{classStoreData.name}}</h1>
+<img *ngIf="showimg" src="{{classStoreData.logo}}" alt="">
+<p *ngIf="buy">thanks {{ClientName}} for your purches</p>
+<button style="margin: 30px 0 0 70px;" class="btn btn-primary" (click)="toggleimg()">toggle image</button>
+<!-- <ul>
+    <li *ngFor="let loc of storeDataClass.branches">
+        {{loc}}
+    </li>
+</ul>  -->
+<!-- 
+<div class="bg-primary">
+     {{AdsSubscription}} -->
+<!-- <button (click)="AddAds()">show Ads</button> 
+
+</div> -->

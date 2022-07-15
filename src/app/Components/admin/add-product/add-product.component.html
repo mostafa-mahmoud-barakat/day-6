@@ -1,0 +1,38 @@
+<!-- <p>add-product works!</p> -->
+<!-- <button class="btn btn-primary" (click)="InsertNewProduct()">submit</button>  day6 No.3-->
+
+<form #prdForm="ngForm" (ngSubmit)="InsertNewProduct()">
+    <div class="mb-3">
+        <label for="prdName" class="form-label">Product Name</label>
+
+        <input type="text" class="form-control" name="prdName" id="prdName" [(ngModel)]="newPdt.name">
+
+    </div>
+
+
+    <div class="mb-3">
+        <label for="prdQuant" class="form-label">Quantity</label>
+        <input type="number" class="form-control" name="prdQuant" id="prdQuant" required [(ngModel)]="newPdt.quantity">
+    </div>
+
+    <div class="mb-3">
+        <label for="prdPrc" class="form-label">Price</label>
+        <input type="number" class="form-control" name="prdPrc" id="prdPrc" required [(ngModel)]="newPdt.price">
+    </div>
+
+    <div class="mb-3">
+        <label for="prdCat" class="form-label">Select Category</label>
+        <select class="form-control" name="prdCat" id="prdCat" required [(ngModel)]="newPdt.categoryID">
+            <option *ngFor="let item of catList" [value]="item.id">
+           {{item.name}}
+            </option>
+      </select>
+    </div>
+
+
+    <button type="submit" class="btn btn-success" [disabled]="prdForm.invalid">Submit</button>
+    <button type="submit" class="btn btn-info"  >update</button>
+</form>
+<!-- <div>
+    for test:{{newPdt | json}}
+</div> -->

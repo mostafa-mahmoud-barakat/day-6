@@ -1,0 +1,65 @@
+<!-- <div class="mb-3">
+    <label for="">select category: </label>
+    <select name="cat" id="cat" class="form-control" [(ngModel)]="selectedCatID"> 
+    <option *ngFor="let cat of catagorylist" [value]="cat.id">{{cat.name}}</option>
+    </select>
+</div>
+<h1>{{selectedCatID}}</h1> -->
+
+<!-- <a class="btn btn-primary" [routerLink]="['/NewProduct']">add product</a>  day 6 No.3-->
+
+<table class="table m-2">
+    <thead>
+        <tr class="bg-dark text-white">
+            <th scope="col">number</th>
+            <th scope="col">name</th>
+            <th scope="col">image</th>
+            <th scope="col">quantity</th>
+            <th scope="col">price</th>
+            <th scope="col">details</th>
+            <th scope="col">count</th>
+            <th scope="col">buy</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- <tr *ngFor="let ted of productlist;let i=index" [hidden]="ted.quantity==0"> -->
+        <!-- <tr *ngFor="let ted of productlist;let i=index" [ngClass]="{'bg-warning':ted.quantity==1}"> -->
+        <!-- day2      <tr *ngFor="let ted of productlist;let i=index" [ngStyle]="{'background-color':(ted.quantity>1)?'white':'gray', 'color':(ted.quantity>1)?'black':'white'}"> -->
+        <ng-container *ngFor="let ted of prdlistofcat;let i=index">
+            <tr [ngStyle]="{'background-color':(ted.quantity>1)?'white':'gray', 'color':(ted.quantity>1)?'black':'white'}">
+                <td>{{i +1}}</td>
+                <!-- <td>{{ted.id}}</td> -->
+                <td>{{ted.name}}</td>
+                <td><img [src]="ted.image"></td>
+                <td>{{ted.quantity}}</td>
+                <td>{{ted.price |currency:'USD'}}</td>
+                <td><button type="button" class="btn btn-info" (click)="openproductdetails(ted.id)">details</button></td>
+                <!-- day 3 template referance-->
+                <td><input class="form-control" type="number" #itemscounts></td>
+                <td><button class="btn btn-success" (click)="updatTotalprice(ted.price, itemscounts.value)">Buy</button></td>
+                <td><button class="btn btn-primary" (click)="updateProduct(ted.id)"   >Update</button></td>
+                <td><button class="btn btn-danger" (click)="deleteRow(ted.id)"  >Delete</button></td>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>
+
+<!-- card -->
+<!-- 
+<div class="card my-5" appShadow style="width: 18rem;">
+    <img src="/download 3.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <p>total price: {{100 |currency:'USD'}}</p>
+        <p>current date {{currentdate |date:'fullDate'}}</p>
+    </div>
+</div> -->
+
+<div class="bg-info my-5">
+    total price:{{orderrotalprice}}
+
+</div>

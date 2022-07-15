@@ -1,0 +1,12 @@
+<div class="mb-3">
+    <label for="">select category: </label>
+    <select name="cat" id="cat" class="form-control" [(ngModel)]="selectedCatID"> 
+    <option *ngFor="let cat of catagorylist" [value]="cat.id">{{cat.name}}</option>
+    <option value="0">All</option>
+    </select>
+</div>
+<!-- <h1>{{selectedCatID}}</h1> -->
+<!-- child component -->
+<products [receivedcatID]="selectedCatID" (totalpricechanged)="onTotalPriceChanged($event)"></products>
+
+<h1>total price:{{receivedOrderTotalPrice}}</h1>
